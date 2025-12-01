@@ -68,7 +68,7 @@ void DisplayManager::update(const ModeManager& mode, const ConnectionManager& co
     }
     
     // Push canvas to display
-    canvas.pushSprite(0, 0);
+    canvas.pushSprite(lcd, 0, 0);
     
     // Update cached state
     lastMode = mode.getCurrentMode();
@@ -111,7 +111,7 @@ void DisplayManager::showNotification(const char* message, uint16_t color) {
     canvas.setTextDatum(MC_DATUM);
     canvas.setTextSize(1);
     canvas.drawString(message, SCREEN_WIDTH / 2, SCREEN_HEIGHT - 10);
-    canvas.pushSprite(0, 0);
+    canvas.pushSprite(lcd, 0, 0);
 }
 
 void DisplayManager::forceRedraw() {

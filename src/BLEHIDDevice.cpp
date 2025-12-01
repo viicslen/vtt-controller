@@ -65,14 +65,14 @@ static const uint8_t hidReportDescriptor[] = {
 };
 
 // Server callbacks implementation
-void BLEHIDManager::ServerCallbacks::onConnect(NimBLEServer* pServer) {
+void BLEHIDManager::ServerCallbacks::onConnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo) {
     if (BLEHIDManager::instance) {
         BLEHIDManager::instance->connected = true;
         BLEHIDManager::instance->advertising = false;
     }
 }
 
-void BLEHIDManager::ServerCallbacks::onDisconnect(NimBLEServer* pServer) {
+void BLEHIDManager::ServerCallbacks::onDisconnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo, int reason) {
     if (BLEHIDManager::instance) {
         BLEHIDManager::instance->connected = false;
         // Restart advertising on disconnect
@@ -100,18 +100,18 @@ void BLEHIDManager::begin() {
     hid = new NimBLEHIDDevice(pServer);
     
     // Set manufacturer and PnP info
-    hid->manufacturer()->setValue("M5Stack");
+    hid->setManufacturer("M5Stack");
     // Using USB Implementers Forum (USB-IF) generic test vendor ID
     // For production, obtain a proper vendor ID from USB-IF
-    hid->pnp(0x02, 0x1915, 0xEEEE, 0x0001); // Generic HID device
-    hid->hidInfo(0x00, 0x01); // Country: not localized, Flags: remote wake
+    hid->setPnp(0x02, 0x1915, 0xEEEE, 0x0001); // Generic HID device
+    hid->setHidInfo(0x00, 0x01); // Country: not localized, Flags: remote wake
     
     // Set report map
-    hid->reportMap((uint8_t*)hidReportDescriptor, sizeof(hidReportDescriptor));
+    hid->setReportMap((uint8_t*)hidReportDescriptor, sizeof(hidReportDescriptor));
     
     // Create input report characteristics
-    inputKeyboard = hid->inputReport(1); // Report ID 1 for keyboard
-    inputMouse = hid->inputReport(2);    // Report ID 2 for mouse
+    inputKeyboard = hid->getInputReport(1); // Report ID 1 for keyboard
+    inputMouse = hid->getInputReport(2);    // Report ID 2 for mouse
     
     // Start HID service
     hid->startServices();
@@ -137,7 +137,7 @@ void BLEHIDManager::startAdvertising() {
     if (!advertising && pServer) {
         NimBLEAdvertising* pAdvertising = NimBLEDevice::getAdvertising();
         pAdvertising->setAppearance(HID_KEYBOARD);
-        pAdvertising->addServiceUUID(hid->hidService()->getUUID());
+        pAdvertising->addServiceUUID(hid->getHidService()->getUUID());
         pAdvertising->start();
         advertising = true;
     }

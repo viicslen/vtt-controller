@@ -43,6 +43,11 @@
 #define COLOR_MOUSE 0x001F        // Blue
 #define COLOR_REMOTE 0xF800       // Red
 
+// Connection Status Colors (RGB565)
+#define COLOR_USB_CONNECTED 0x07E0   // Green (same as TFT_GREEN)
+#define COLOR_BLE_CONNECTED 0x001F   // Blue (same as TFT_BLUE)
+#define COLOR_DISCONNECTED 0xF800    // Red (same as TFT_RED)
+
 // HID Key Codes Reference
 #define HID_KEY_ARROW_UP 0x52
 #define HID_KEY_ARROW_DOWN 0x51

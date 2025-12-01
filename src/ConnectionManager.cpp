@@ -75,12 +75,12 @@ const char* ConnectionManager::getConnectionStatusString() const {
 uint16_t ConnectionManager::getConnectionColor() const {
     switch (activeConnection) {
         case ConnectionType::USB:
-            return TFT_GREEN;
+            return COLOR_USB_CONNECTED;
         case ConnectionType::BLE:
-            return TFT_BLUE;
+            return COLOR_BLE_CONNECTED;
         case ConnectionType::NONE:
         default:
-            return TFT_RED;
+            return COLOR_DISCONNECTED;
     }
 }
 

@@ -65,14 +65,14 @@ static const uint8_t hidReportDescriptor[] = {
 };
 
 // Server callbacks implementation
-void BLEHIDManager::ServerCallbacks::onConnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo) {
+void BLEHIDManager::ServerCallbacks::onConnect(NimBLEServer*, NimBLEConnInfo&) {
     if (BLEHIDManager::instance) {
         BLEHIDManager::instance->connected = true;
         BLEHIDManager::instance->advertising = false;
     }
 }
 
-void BLEHIDManager::ServerCallbacks::onDisconnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo, int reason) {
+void BLEHIDManager::ServerCallbacks::onDisconnect(NimBLEServer*, NimBLEConnInfo&, int) {
     if (BLEHIDManager::instance) {
         BLEHIDManager::instance->connected = false;
         // Restart advertising on disconnect

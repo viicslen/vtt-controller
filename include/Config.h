@@ -25,6 +25,12 @@
 #define MODE_SWITCH_TONE_DURATION 100
 #define IR_SEND_TONE_FREQ 800
 #define IR_SEND_TONE_DURATION 30
+#define STARTUP_TONE_FREQ_1 1000
+#define STARTUP_TONE_FREQ_2 1500
+#define STARTUP_TONE_DURATION 100
+
+// HID Report Configuration
+#define MAX_SIMULTANEOUS_KEYS 6
 
 // BLE Configuration
 #define BLE_DEVICE_NAME "M5Cardputer"

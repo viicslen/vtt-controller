@@ -170,7 +170,7 @@ const char* DisplayManager::getModeInstructions(Mode mode) const {
         case Mode::KEYBOARD:
             return "Type to send keystrokes";
         case Mode::MOUSE:
-            return "Arrows:Move Enter:L-Click \\:R-Click";
+            return "Arrows:Move Enter:L-Click Bkslash:R-Click";
         case Mode::TV_REMOTE:
             return "P:Pwr +/-:Vol [/]:Ch M:Mute";
         default:

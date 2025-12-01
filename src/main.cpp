@@ -50,9 +50,9 @@ void setup() {
     display.update(modeManager, connectionManager);
     
     // Play startup tone
-    M5Cardputer.Speaker.tone(1000, 100);
-    delay(100);
-    M5Cardputer.Speaker.tone(1500, 100);
+    M5Cardputer.Speaker.tone(STARTUP_TONE_FREQ_1, STARTUP_TONE_DURATION);
+    delay(STARTUP_TONE_DURATION);
+    M5Cardputer.Speaker.tone(STARTUP_TONE_FREQ_2, STARTUP_TONE_DURATION);
 }
 
 void loop() {

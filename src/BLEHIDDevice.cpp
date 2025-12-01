@@ -101,7 +101,9 @@ void BLEHIDManager::begin() {
     
     // Set manufacturer and PnP info
     hid->manufacturer()->setValue("M5Stack");
-    hid->pnp(0x02, 0x05AC, 0x820A, 0x0210); // Apple-like vendor ID for compatibility
+    // Using USB Implementers Forum (USB-IF) generic test vendor ID
+    // For production, obtain a proper vendor ID from USB-IF
+    hid->pnp(0x02, 0x1915, 0xEEEE, 0x0001); // Generic HID device
     hid->hidInfo(0x00, 0x01); // Country: not localized, Flags: remote wake
     
     // Set report map
@@ -164,7 +166,7 @@ void BLEHIDManager::sendKeyboardReport(uint8_t modifiers, uint8_t* keys, uint8_t
     report[0] = modifiers;
     report[1] = 0; // Reserved
     
-    for (int i = 0; i < 6 && i < numKeys; i++) {
+    for (int i = 0; i < MAX_SIMULTANEOUS_KEYS && i < numKeys; i++) {
         report[2 + i] = keys[i];
     }
     

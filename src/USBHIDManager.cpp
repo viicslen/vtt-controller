@@ -27,7 +27,7 @@ void USBHIDManager::sendKeyboardReport(uint8_t modifiers, uint8_t* keys, uint8_t
     report.reserved = 0;
     memset(report.keys, 0, sizeof(report.keys));
     
-    for (int i = 0; i < 6 && i < numKeys; i++) {
+    for (int i = 0; i < MAX_SIMULTANEOUS_KEYS && i < numKeys; i++) {
         report.keys[i] = keys[i];
     }
     

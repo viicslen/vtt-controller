@@ -2,11 +2,12 @@
 #include "Config.h"
 
 // LG TV command table
+// Note: Key mappings assume US keyboard layout
 const IRRemoteManager::LGCommand IRRemoteManager::commands[] = {
     {'p', 0, LG_POWER, "Power"},
     {'P', 0, LG_POWER, "Power"},
     {'+', 0, LG_VOL_UP, "Vol Up"},
-    {'=', 0, LG_VOL_UP, "Vol Up"},  // = key without shift is common for +
+    {'=', 0, LG_VOL_UP, "Vol Up"},  // '=' shares key with '+' on US keyboards
     {'-', 0, LG_VOL_DOWN, "Vol Down"},
     {']', 0, LG_CH_UP, "Ch Up"},
     {'[', 0, LG_CH_DOWN, "Ch Down"},

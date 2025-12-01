@@ -61,8 +61,8 @@ private:
     
     // Server callbacks class
     class ServerCallbacks : public NimBLEServerCallbacks {
-        void onConnect(NimBLEServer* pServer) override;
-        void onDisconnect(NimBLEServer* pServer) override;
+        void onConnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo) override;
+        void onDisconnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo, int reason) override;
     };
 };
 
